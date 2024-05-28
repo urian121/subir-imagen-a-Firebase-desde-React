@@ -5,10 +5,15 @@
     https://www.npmjs.com/package/firebase
     https://firebase.google.com/docs/storage/web/start?hl=es-419
 
+##### Instalar
+
+    npm install firebase
+
 ##### Usar el paquete uuid, para renombrar cada archivo antes de subirlo con un nombre unico.
 
     https://www.npmjs.com/package/uuid
     https://www.youtube.com/watch?v=A5yjN73Aj7s
+    https://lasfi.to/tutoriales/guardar-firebase-storage-react/
 
 ##### Sitio Web de Firebase console
 
@@ -29,9 +34,10 @@
 
 ###
 
-Subir múltiples imagnes a Firebase con ReactJs
+Subir múltiples imagenes a Firebase con ReactJs
 Sube archivos con Cloud Storage en la Web - Firebase
-Como SUBIR IMAGENES a FIREBASE con REACT
+Como subir archivos a Cloud Storage en la Web - Firebase - con REACT
+como subir imagenes a firebase en react
 firebase storage
 Cloud Storage for Firebase
 Upload Files

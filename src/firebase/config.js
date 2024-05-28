@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+// Importando firebase/storage de firebase
+import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
 const firebaseConfig = {
@@ -11,30 +12,41 @@ const firebaseConfig = {
   appId: "1:220546917601:web:2d516faf1e9bcf251043a0",
 };
 
-// Initialize Firebase
+// Inicializando Firebase
 const app = initializeApp(firebaseConfig);
-// El getStorage nos permite conectarnos a la base de datos, pide como parametro la consfiguracion de firebase
+// El getStorage nos permite conectarnos a la base de datos, pide como parametro la consfiguración de firebase
 export const storage = getStorage(app);
 
 /**
- * La funcion uploadImage nos permite subir archivos a firebase, esta recibe como parametro un archivo
+ * La función uploadImage nos permite subir archivos a firebase, esta recibe como parametro un archivo
  */
-export function uploadImage(file) {
+export async function uploadImage(file) {
   console.log(file);
-  const storageRef = ref(storage, uuidv4());
-  //const storageRef = ref(storage, 'fotos/' + file.name + uuidv4());
-  //const storageRef = ref(storage, 'fotos/' + uuidv4());
-
-  //  const storageRef = ref(storage, uuidv4() + file.name);
+  // const storageRef = ref(storage, uuidv4());
+  const storageRef = ref(storage, "fotos/" + uuidv4());
   // const storageRef = ref(storage, file.name);
-
-  // uploadBytes es una funcion que recibe como parametro la referencia y el archivo
-  uploadBytes(storageRef, file).then((snapshot) => {
-    console.log("Archivo subido!", snapshot);
-  });
 
   /*
   const storageRef = ref(storage, `images/${file.name}`);
   return uploadBytes(storageRef, file);
   */
+
+  // uploadBytes es una función que recibe como parametro la referencia y el archivo que se desea subir
+  await uploadBytes(storageRef, file);
+  const urlFoto = await getDownloadURL(storageRef);
+  return urlFoto;
+
+  /*
+  await uploadBytes(storageRef, file).then((snapshot) => {
+    console.log("Archivo subido!", snapshot);
+  });
+  */
+}
+
+// función para obtener todas las imagenes subidas
+export async function getImages() {
+  const listRef = ref(storage, "fotos/");
+  const res = await listAll(listRef);
+  const urls = await Promise.all(res.items.map((itemRef) => getDownloadURL(itemRef)));
+  return urls;
 }
