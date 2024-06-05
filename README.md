@@ -1,13 +1,17 @@
-# Subir Archivos a Firebase desde React
+# Subir Imagenes a Firebase desde React
 
-##### Este proyecto demuestra cómo subir archivos a Firebase Storage utilizando una aplicación desarrollada en React. La implementación incluye la configuración de Firebase, la creación de una interfaz de usuario para seleccionar archivos y el manejo de eventos para cargar estos archivos en el almacenamiento en la nube de Firebase de manera eficiente y segura. Ademas poder obtener una lista de todas las imagenes subidas. Tambien haemos uso de los Hooks useEffect y useState.
+##### Este proyecto demuestra cómo subir imagenes a Firebase Storage utilizando una aplicación desarrollada en React. La implementación incluye la configuración de Firebase, la creación de una interfaz de usuario para seleccionar archivos y el manejo de eventos para cargar estos archivos en el almacenamiento en la nube de Firebase de manera eficiente y segura. Ademas poder obtener una lista de todas las imagenes subidas. Tambien haemos uso de los Hooks useEffect y useState.
 
 ##### Hacer uso de la biblioteca firebase la cual nos permite conectarnos a multiples servicios de firebase para este caso en particular (storage).
 
     https://www.npmjs.com/package/firebase
     https://firebase.google.com/docs/storage/web/start?hl=es-419
 
-##### Instalar
+##### Resultado final
+
+![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/guardar-imagen-con-firebase-storage.png)
+
+##### Instalar firebase
 
     npm install firebase
 
@@ -29,26 +33,29 @@
 
     https://console.firebase.google.com/u/1/?hl=es-419
 
-##### Importante:
+##### Importante
 
     Ya en el panel de Firebase  en la sección de storage, debemos ir a Reglas y modificar a true, por defecto es false, lo cual no tendriamos permisos para subir archivos.
 
-        service firebase.storage {
+    service firebase.storage {
         match /b/{bucket}/o {
             match /{allPaths=**} {
             // allow read, write: if false;
             allow read, write: if true;
             }
         }
-        }
+    }
 
-##### Ejemplo
+### Expresiones de Gratitud 🎁
 
-Subir múltiples imagenes a Firebase con ReactJs
-Sube archivos con Cloud Storage en la Web - Firebase
-Como subir archivos a Cloud Storage en la Web - Firebase - con REACT
-como subir imagenes a firebase en react
-firebase storage
-Cloud Storage for Firebase
-Upload Files
-Cloud Storage for Firebas
+    Comenta a otros sobre este proyecto 📢
+    Invita una cerveza 🍺 o un café ☕
+
+Paypal [Urian Viera](https://www.paypal.com/donate/?hosted_button_id=4SV78MQJJH3VE)
+
+    o por correo electronico: iamdeveloper86@gmail.com
+    Da las gracias públicamente 🤓.
+
+## No olvides SUSCRIBIRTE 👍
+
+##### Creado por: [Urian Viera](https://github.com/urian121)
