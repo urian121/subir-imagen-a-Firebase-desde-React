@@ -53,7 +53,7 @@
 
 Paypal [Urian Viera](https://www.paypal.com/donate/?hosted_button_id=4SV78MQJJH3VE)
 
-    o por correo electronico: iamdeveloper86@gmail.com
+    correo electronico: iamdeveloper86@gmail.com
     Da las gracias públicamente 🤓.
 
 ## No olvides SUSCRIBIRTE 👍
