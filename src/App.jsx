@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   subirImagenFirebase,
   obtenerImagenesFirebase,
-} from "./firebase/config.js";
+} from "./firebase/configFirebase.js";
 
 // Importamos el paquete para las alertas
 import { toast } from "nextjs-toast-notify";
@@ -25,6 +25,9 @@ function App() {
     fetchImages();
   }, []);
 
+  /**
+   * La función fetchImages nos permite obtener todas las imagenes subidas a Firebase
+   */
   async function fetchImages() {
     try {
       const images = await obtenerImagenesFirebase();
@@ -34,19 +37,41 @@ function App() {
     }
   }
 
+  /**
+   * La función subirImagen nos permite subir archivos a Firebase.
+   */
   async function subirImagen(e) {
-    e.preventDefault();
+    e.preventDefault(); // Evitamos que se recargue la página
+    // Obtenemos el archivo del formulario
     let file = e.target[0].files[0];
-    if (file === undefined) return;
 
+    /**
+     * Validar que se haya seleccionado un archivo
+     */
+    if (file === undefined) {
+      toast.error("¡Debe seleccionar una imagen!", {
+        duration: 4000,
+        progress: true,
+        position: "top-right",
+        transition: "swingInverted",
+        icon: "",
+        sonido: true,
+      });
+      return false;
+    }
+
+    // Mostarndo Loading
     showLoading({
       message: "Enviando imagen a Firebase...",
       textLoadingSize: "20px",
     });
 
     try {
+      // La funcion subirImagenFirebase recibe como parametro el archivo que se desea subir
       const respuesta = await subirImagenFirebase(file);
+      // Actualizando la lista de imagenes
       setImageList((prevList) => [...prevList, respuesta]);
+      // Mostrando alerta de exito
       toast.success("¡La operación se realizó con éxito!", {
         duration: 4000,
         progress: true,
@@ -65,6 +90,7 @@ function App() {
         sonido: true,
       });
     } finally {
+      // Ocultando Loading
       hideLoading({ timeLoading: 500 });
     }
   }

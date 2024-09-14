@@ -12,24 +12,27 @@
 ![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/guardar-imagen-con-firebase-storage.png)
 
 ##### Instalar firebase
-    npm install firebase
 
-#### instalar la libreria npm i nextjs-toast-notify para crear las alertas.
+    npm install firebase
+    https://www.npmjs.com/package/firebase
+
+#### instalar la libreria nextjs-toast-notify para crear las alertas.
 
     npm i nextjs-toast-notify
 
-#### Documentación oficial
+#### Documentación oficial de la libreria nextjs-toast-notify
 
     https://www.npmjs.com/package/nextjs-toast-notify
     https://www.nextjstoastnotify.com
 
-#### Usar el paquete uuid, para renombrar cada archivo antes de subirlo con un nombre unico.
-
+#### Usar el paquete npm uuid, para renombrar cada archivo antes de subirlo a Firebase con un nombre unico.
+    npm i uuid
     https://www.npmjs.com/package/uuid
 
 #### Sitio Web de Firebase console
 
     https://console.firebase.google.com/u/1/?hl=es-419
+    https://firebase.google.com/docs/storage/web/start?hl=es-419
 
 #### Importante
 
