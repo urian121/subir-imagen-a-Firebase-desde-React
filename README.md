@@ -1,4 +1,4 @@
-# Subir Imagenes a Firebase desde React
+# Subir Imagenes a Firebase desde React JS
 
 ##### Este proyecto demuestra cómo subir imagenes a Firebase Storage utilizando una aplicación desarrollada en React. La implementación incluye la configuración de Firebase, la creación de una interfaz de usuario para seleccionar archivos y el manejo de eventos para cargar estos archivos en el almacenamiento en la nube de Firebase de manera eficiente y segura. Ademas poder obtener una lista de todas las imagenes subidas. Tambien hacemos uso de los Hooks useEffect y useState.
 
