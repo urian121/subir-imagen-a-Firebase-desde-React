@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "firebase": "^10.11.1",
+    "loading-request": "^2.2.0",
+    "nextjs-toast-notify": "^1.24.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-toastify": "^10.0.5",

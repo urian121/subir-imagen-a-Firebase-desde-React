@@ -18,9 +18,9 @@ const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 
 /**
- * La función uploadImage nos permite subir archivos a firebase, esta recibe como parametro un archivo
+ * La función subirImagenFirebase nos permite subir archivos a firebase, esta recibe como parametro un archivo
  */
-export async function uploadImage(file) {
+export async function subirImagenFirebase(file) {
   console.log(file);
   // const storageRef = ref(storage, uuidv4());
   const storageRef = ref(storage, "fotos/" + uuidv4());
@@ -44,7 +44,7 @@ export async function uploadImage(file) {
 }
 
 // función para obtener todas las imagenes subidas
-export async function getImages() {
+export async function obtenerImagenesFirebase() {
   const listRef = ref(storage, "fotos/");
   const res = await listAll(listRef);
   const urls = await Promise.all(res.items.map((itemRef) => getDownloadURL(itemRef)));

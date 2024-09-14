@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
-import { uploadImage, getImages } from "./firebase/config.js";
+import {
+  subirImagenFirebase,
+  obtenerImagenesFirebase,
+} from "./firebase/config.js";
 
-import "./styles/loading.css";
+// Importamos el paquete para las alertas
+import { toast } from "nextjs-toast-notify";
+import "nextjs-toast-notify/dist/nextjs-toast-notify.css";
 
-// Componente para mostrar las imagenes subidas
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Loading from "./components/Loading.jsx";
-import Form from "./components/Form.jsx";
+// Importamos el paquete para el Loading que se muestra cuando se envia el form
+import { showLoading, hideLoading } from "loading-request";
+import "loading-request/dist/index.css";
+
+import Formulario from "./components/Form.jsx";
 import ListImg from "./components/ListImg.jsx";
 import Titulo from "./components/Titulo.jsx";
 
 function App() {
+  // Declarando mis variables de estado
   const [imageList, setImageList] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   // El hook useEffect nos permite ejecutar una función cuando se renderiza el componente y obtener las imagenes subidas
   useEffect(() => {
@@ -22,7 +27,7 @@ function App() {
 
   async function fetchImages() {
     try {
-      const images = await getImages();
+      const images = await obtenerImagenesFirebase();
       setImageList(images);
     } catch (error) {
       console.error("Error al recuperar las imágenes:", error);
@@ -34,37 +39,42 @@ function App() {
     let file = e.target[0].files[0];
     if (file === undefined) return;
 
-    setLoading(true);
+    showLoading({
+      message: "Enviando imagen a Firebase...",
+      textLoadingSize: "20px",
+    });
 
     try {
-      const respuesta = await uploadImage(file);
+      const respuesta = await subirImagenFirebase(file);
       setImageList((prevList) => [...prevList, respuesta]);
-      toast.success("Imagen subida correctamente");
+      toast.success("¡La operación se realizó con éxito!", {
+        duration: 4000,
+        progress: true,
+        position: "top-right",
+        transition: "swingInverted",
+        icon: "",
+        sonido: true,
+      });
     } catch (error) {
-      toast.warning("Error al subir la imagen");
+      toast.error("¡La operación no se pudo realizar!", {
+        duration: 4000,
+        progress: true,
+        position: "top-right",
+        transition: "bounceIn",
+        icon: "",
+        sonido: true,
+      });
     } finally {
-      setLoading(false);
+      hideLoading({ timeLoading: 500 });
     }
   }
 
   return (
     <>
-      {loading && <Loading />}
-
-      <ToastContainer />
-      <div className="row justify-content-center mb-5">
-        <div className="col-md-12">
-          <Titulo />
-        </div>
-      </div>
+      <Titulo />
       <div className="row justify-content-center">
-        <div className="col-md-4 border-right">
-          <Form subirImagen={subirImagen} loading={loading} />
-        </div>
-
-        <div className="col-md-8">
-          <ListImg imageList={imageList} />
-        </div>
+        <Formulario subirImagen={subirImagen} />
+        <ListImg imageList={imageList} />
       </div>
     </>
   );
